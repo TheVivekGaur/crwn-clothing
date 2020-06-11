@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {connect} from 'react-redux';
 
@@ -10,24 +10,18 @@ import {signUpStart } from '../../redux/user/user.actions';
 
 import './sign-up.styles.scss';
 
-class SignUp extends React.Component{
-
- constructor(){
-   super();
-  
-   this.state={
-    displayName: ' ',
-    email: ' ',
+const  SignUp= ({signUpStart}) => {
+    
+  const [userCredentials, setUserCredentials] = useState({ 
+    displayName: ' ', 
+    email: ' ', 
     password: ' ',
-    confirmPassword: ' ',
-   }
-  }
-
-  handleSubmit = async event => {
+     confirmPassword:' '
+    });
+  
+  const { displayName, email , password , confirmPassword} = userCredentials;
+  const  handleSubmit = async event => {
    event.preventDefault();
-
-   const { signUpStart} = this.props;
-   const { displayName, email , password , confirmPassword} =this.state;
    
    if( password !== confirmPassword) {
    alert("passwords don't match")
@@ -35,24 +29,22 @@ class SignUp extends React.Component{
   }
   signUpStart({ displayName, email , password});
    };
-  handleChange= event => {
+  const handleChange= event => {
      const {name , value} = event.target;
-     this.setState ( {[name] : value});
-  }
-render()
-{   
- const { displayName, email , password , confirmPassword} =this.state;
+       setUserCredentials({...userCredentials, [name] : value });
+  };
+
  return (
   <div className='sign-up'>
   <h2 className='title'>I do not have a account</h2>
   <span>Sign up with your email and password</span>
   
-  <form className='sign-up-form' onSubmit={this.handleSubmit}>
+  <form className='sign-up-form' onSubmit={handleSubmit}>
   <FormInput 
   name='displayName'
   type='text'
   value={displayName}
-  onChange={this.handleChange}
+  onChange={handleChange}
   label='Display Name'
   required
 / >
@@ -61,7 +53,7 @@ render()
    name='email'
    type='email'
    value={email}
-   onChange={this.handleChange}
+   onChange={handleChange}
    label='Email'
    required
  / >
@@ -70,7 +62,7 @@ render()
   name='password'
   type='password'
   value={password}
-  onChange={this.handleChange}
+  onChange={handleChange}
   label='Password'
   required
  / >
@@ -79,7 +71,7 @@ render()
   name='confirmPassword'
   type='password'
   value={confirmPassword}
-  onChange={this.handleChange}
+  onChange={handleChange}
  label='Confirm Password'
   required
  / >
@@ -87,7 +79,6 @@ render()
   </form>
   </div>
  );
-}
 } 
 
 const mapDispatchToProps = dispatch =>({
