@@ -13,10 +13,10 @@ import './sign-up.styles.scss';
 const  SignUp= ({signUpStart}) => {
     
   const [userCredentials, setUserCredentials] = useState({ 
-    displayName: ' ', 
-    email: ' ', 
-    password: ' ',
-     confirmPassword:' '
+    displayName: '', 
+    email: '', 
+    password: '',
+     confirmPassword:''
     });
   
   const { displayName, email , password , confirmPassword} = userCredentials;

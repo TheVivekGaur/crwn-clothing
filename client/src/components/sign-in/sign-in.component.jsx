@@ -14,7 +14,7 @@ import './sign-in.styles.scss';
 
 
 const SignIn=({ emailSignInStart, googleSignInStart}) => {
-  const [userCredentials, setCredentials ] = useState({ email: ' ' , password: ' ' })
+  const [userCredentials, setCredentials ] = useState({ email: '' , password: '' })
   const { email , password } = userCredentials;
    const handleSubmit = async event =>  {
   event.preventDefault();
