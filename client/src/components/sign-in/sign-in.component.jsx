@@ -38,7 +38,7 @@ const  handleChange = (event) => {
     type='email'
     handleChange={handleChange}
     value={email}
-    label='email'
+    label='Email'
     required
    />
    <FormInput 
@@ -46,7 +46,7 @@ const  handleChange = (event) => {
     type='password'
     value={password}
     handleChange={handleChange}
-    label='password'
+    label='Password'
     required
    />
    <div className= 'buttons'>
